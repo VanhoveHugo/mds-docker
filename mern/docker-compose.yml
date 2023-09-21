@@ -26,7 +26,7 @@ services:
       - mongo
   mongo:
     # utilise l'image mongo officiel
-    image: mongo
+    image: mongo:6
     # bind le port 27017 de ma machine sur le port virtuelle 27017 
     ports:
       - "27017:27017"
