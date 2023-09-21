@@ -35,6 +35,10 @@ services:
     # bind le port 27017 de ma machine sur le port virtuelle 27017 
     ports:
       - "27017:27017"
+    # ajoute des variables d'environnement afin de créer un utilisateur
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     # ajoute des volumes afin d'avoir les données
     volumes:
       - ./data:/data/db
