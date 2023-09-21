@@ -26,8 +26,7 @@ services:
       - mongo
     networks:
       - backend
-      - frontend
-    command: npm run dev
+      - frontend      
   mongo:
     # utilise l'image mongo officiel
     image: mongo:6

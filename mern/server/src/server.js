@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
-    res.send("Node server running");
+    res.send("Node server");
 });
 
 const port = process.env.PORT || 3000;
