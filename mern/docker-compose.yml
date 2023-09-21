@@ -11,6 +11,8 @@ services:
     volumes:
       - ./client/src:/usr/src/app
       - /usr/src/app/node_modules
+    networks:
+      - frontend
   server:
     # compile l'image dans le dossier server
     build: ./server
@@ -24,6 +26,9 @@ services:
     # ajoute une dépendance au service mongo
     depends_on:
       - mongo
+    networks:
+      - backend
+      - frontend      
   mongo:
     # utilise l'image mongo officiel
     image: mongo:6
@@ -33,3 +38,10 @@ services:
     # ajoute des volumes afin d'avoir les données
     volumes:
       - ./data:/data/db
+    networks:
+      - backend
+
+# création d'un réseau virtuelle
+networks:
+  frontend:
+  backend:
