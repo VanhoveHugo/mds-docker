@@ -1,0 +1,10 @@
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    ports:
+      - 80:80
+    volumes:
+      - ./src/:/var/www/html
