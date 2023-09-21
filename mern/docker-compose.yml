@@ -2,26 +2,34 @@
 
 services:
   client:
+    # compile l'image dans le dossier client
     build: ./client
+    # bind le port 80 de ma machine sur le port virtuelle 3000 
     ports:
       - "80:3000"
+    # ajoute des volumes afin d'avoir les sources
     volumes:
       - ./client/src:/usr/src/app
       - /usr/src/app/node_modules
-      
   server:
+    # compile l'image dans le dossier server
     build: ./server
+    # bind le port 3000 de ma machine sur le port virtuelle 3000
     ports:
       - "3000:3000"
+    # ajoute des volumes afin d'avoir les sources
     volumes:
       - ./server:/usr/src/app
       - /usr/src/app/node_modules
+    # ajoute une dépendance au service mongo
     depends_on:
       - mongo
-
   mongo:
+    # utilise l'image mongo officiel
     image: mongo
+    # bind le port 27017 de ma machine sur le port virtuelle 27017 
     ports:
       - "27017:27017"
+    # ajoute des volumes afin d'avoir les données
     volumes:
       - ./data:/data/db
