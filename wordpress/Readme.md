@@ -7,6 +7,7 @@ This is a docker-compose file to run a Wordpress site with a MySQL database.
 1. Clone this repository
 2. Run `docker-compose up -d` in the wordpress folder
 3. Open your browser and go to `localhost:80`
+4. Change the .env file to your configuration
 
 ## Notes
 - The database is stored in the `db` folder
