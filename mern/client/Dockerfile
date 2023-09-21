@@ -6,7 +6,5 @@ WORKDIR /app
 COPY package.json .
 # Installe les dépendances de l'application
 RUN npm install
-# Copie le reste du code source de l'application dans le répertoire de travail
-COPY . .
 # Lance l'application
 CMD ["npm", "start"]

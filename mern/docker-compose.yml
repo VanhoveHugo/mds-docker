@@ -7,8 +7,8 @@ services:
       - "80:3000"
     # ajoute des volumes afin d'avoir les sources
     volumes:
-      - ./client/src:/usr/src/app
-      - /usr/src/app/node_modules
+      - ./client/src:/app/src
+      - ./client/public:/app/public
     networks:
       - frontend
   server:
@@ -20,7 +20,6 @@ services:
     # ajoute des volumes afin d'avoir les sources
     volumes:
       - ./server/src:/app/src
-      - /usr/src/app/node_modules
     # ajoute une dépendance au service mongo
     depends_on:
       - mongo

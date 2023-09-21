@@ -4,7 +4,6 @@ FROM node:alpine
 WORKDIR /app
 # Copie le fichier package.json dans le répertoire de travail
 COPY package.json .
-COPY package-lock.json .
 # Installe les dépendances de l'application
 RUN npm install
 # Lance l'application
