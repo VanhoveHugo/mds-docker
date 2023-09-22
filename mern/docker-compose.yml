@@ -1,0 +1,59 @@
+services:
+  client:
+    # compile l'image dans le dossier client
+    build: ./client
+    # bind le port 80 de ma machine sur le port virtuelle 3000 
+    ports:
+      - "80:3000"
+    # ajoute des volumes afin d'avoir les sources
+    volumes:
+      - ./client/src:/app/src
+      - ./client/public:/app/public
+    networks:
+      - frontend
+  server:
+    # compile l'image dans le dossier server
+    build: ./server
+    # bind le port 3000 de ma machine sur le port virtuelle 3000
+    ports:
+      - "3000:3000"
+    # ajoute des volumes afin d'avoir les sources
+    volumes:
+      - ./server/src:/app/src
+    # ajoute une dépendance au service mongo
+    depends_on:
+      - mongo
+    networks:
+      - backend
+      - frontend
+    command: npm run dev
+  mongo:
+    # utilise l'image mongo officiel
+    image: mongo:6
+    # bind le port 27017 de ma machine sur le port virtuelle 27017 
+    ports:
+      - "27017:27017"
+    # ajoute des variables d'environnement afin de créer un utilisateur
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    # ajoute des volumes afin d'avoir les données
+    volumes:
+      - ./data:/data/db
+    networks:
+      - backend
+
+  # elk:
+  #   image: sebp/elk
+  #   ports:
+  #     - "5601:5601"
+  #     - "9200:9200"
+  #     - "5044:5044"
+  #   networks:
+  #     - backend
+  #     - frontend
+
+# création d'un réseau virtuelle
+networks:
+  frontend:
+  backend:
